@@ -3,11 +3,9 @@ if not IsDuplicityVersion() then
   return {}
 end
 
---- @alias HTTPMethods 'GET'|'POST'|'PUT'|'DELETE'|
-
 ---@class HTTPRequest
 --- @field path string
---- @field method HTTPMethods
+--- @field method 'GET'|'POST'|'PUT'|'DELETE'
 --- @field address string
 --- @field headers table<string,string>
 --- @field setDataHandler fun(handler:fun(body: string):nil):nil
