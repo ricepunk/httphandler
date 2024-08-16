@@ -51,12 +51,12 @@ local function matchRoute(path, url)
   return false
 end
 
-
 ---@param res HTTPResponse
 ---@param status number
-local function cancelResponse(res, status)
+---@param message? string
+local function cancelResponse(res, status, message)
   res.writeHead(status or 400)
-  res.send()
+  res.send(message or 'Bad request')
 end
 
 function Router:constructor()
@@ -104,7 +104,7 @@ function Router:constructor()
     local success, result = pcall(route.callback, req, res)
     if not success then
       res.writeHead(500)
-      res.send(result)
+      res.send(result or 'Internal server error')
     end
   end)
 
